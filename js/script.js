@@ -130,3 +130,89 @@ function capitalizeText(text) {
 }
 
 console.log(capitalizeText("sono giuseppe"))
+
+
+/*
+Chiedere all’utente di inserire una parola
+Creare una funzione per capire se la parola inserita è palindroma
+
+anna
+*/
+
+function isPalindroma() {
+    //1) chiediamo la parola all'utente
+    let word = prompt("Inserisci una parola per vedere se è palindroma").toLowerCase()
+    console.log(word)
+    //2) inverto word in invWord
+    let invWord = '';
+    for(let i = word.length - 1; i >= 0; i--) {
+        invWord += word[i]
+    }
+
+    //3) verifico che invWord sia == a word
+    if(word == invWord){
+        console.log("La parola è palindroma")
+    } else {
+        console.log("La parola non è palindroma")
+    }
+}
+
+isPalindroma();
+
+
+/*
+L’utente sceglie pari o dispari e inserisce un numero da 1 a 5.
+Generiamo un numero random (sempre da 1 a 5) per il computer (usando una funzione).
+Sommiamo i due numeri
+Stabiliamo se la somma dei due numeri è pari o dispari (usando una funzione)
+Dichiariamo chi ha vinto.
+*/
+
+function pariDispari() {
+    //1) l'utente sceglie pari o dispari
+    let sceltaUtente = prompt("Scegli 0 se vuoi scommettere sul pari o 1 se vuoi scommettere sul dispari")
+    //2) l'utente inserisce un numero tra 1 e 5
+    let numUtente = parseInt(prompt("Inserisci un numero tra 1 e 5"))
+
+    //3) generiamo un numero random
+    let computerNum = generaNumeroComputer(1, 5);
+
+    console.log("Il numero del computer è: " + computerNum)
+    //4) sommiamo i numeri (dell'utente e del computer)
+    //5) stabiliamo se la somma è pari o dispari
+    let sommaPari = isSommaPari(numUtente, computerNum);
+
+    //6) dichiariamo chi ha vinto
+    if(sceltaUtente == 0) {
+        if(sommaPari) {
+            console.log("Hai vinto")
+        } else {
+            console.log("Hai perso")
+        }
+    } else if(sceltaUtente == 1) {
+        if(sommaPari) {
+            console.log("Hai perso")
+        } else {
+            console.log("Hai vinto")
+        }
+    }
+}
+
+function generaNumeroComputer(min, max) {
+    //1) creo una variabile 
+    //2) genero un numero random
+    //3) ritorno il numero
+    return Math.floor(Math.random() * (max - min) + min);
+}
+
+function isSommaPari(numUtente, numComputer) {
+    //1) somma i numeri
+    let somma = numUtente + numComputer;
+
+    console.log("La somma vale: " + somma)
+    //2) controllare se la somma è pari o dispari
+    //3) ritorno il valore del check
+    return somma % 2 == 0;
+}
+
+pariDispari()
